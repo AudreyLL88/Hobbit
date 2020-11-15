@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+        <h2>{{ page_title }}</h2>
+		<p>
+            The group consists of thirteen Khazad, the wizard Olórin, and a Hobbit. During the Third Age of 2941, it was headed
+			by the Mountain King. They allied to reclaim the lost realm of Erebor from the firedrake dragon. The Mountain King's
+			interest in reclaiming his family's lost realm had sparked when he met with the wizard. The meeting had been one of
+			the factors Oakenshield allied with the dwarves. His family lost the kingdom to the firedrake dragon. The wizard was
+			the one who recruited Baggins to their growing group. He had experience traveling with the Hobbit, and he remembered
+			how bold he was. He knew of Bilbo’s specific skill set with cunningness and stealthiness. The down to earth attitude
+			of the Hobbit can also influence the ill-tempered dwarves. These being believed in superstitions and the number
+			thirteen brings bad luck. They did not have a second thought in welcoming the new member of their group. (Source:
+			https://www.thetolkienforum.com/wiki/Thorin-and-Company)
+        </p>
+
+        {% for member in company %}
+
+            <div class="row featurette">
+                {% if loop.index % 2 !=0 %}
+
+                    <div class="col-md-7">
+                        <h3><a href="/about/{{ member.url }}">{{ loop.index }}.{{ member.name }}</a></h3>
+                        <p>
+                            {{ member.description }}
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="{{ member.image_source }}" alt="picture thorin" class="featurette-image image-responsive">
+                    </div>
+
+                {% else %}
+
+
+                    <div class="col-md-5">
+                        <img src="{{ member.image_source }}" alt="picture thorin" class="featurette-image image-responsive">
+                    </div>
+                    <div class="col-md-7">
+                        <h3><a href="/about/{{ member.url }}">{{ loop.index }}.{{ member.name }}</a></h3>
+                        <p>
+                            {{ member.description }}
+                        </p>
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+            {% if loop.index != loop.length %}
+
+                <hr class="featurette-divider">
+
+            {% endif %}
+
+        {% endfor %}
+
+{% endblock %}
